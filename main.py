@@ -1,16 +1,14 @@
-from task_utils import (
+from task_manager.task_utils import (
     add_task,
     mark_task_as_complete,
     view_pending_tasks,
-    calculate_progress
+    calculate_progress,
+    tasks
 )
 
-
 def main():
-    tasks = []
-
     while True:
-        print("\nTask Management System")
+        print("Task Management System")
         print("1. Add Task")
         print("2. Mark Task as Complete")
         print("3. View Pending Tasks")
@@ -23,15 +21,13 @@ def main():
             title = input("Enter task title: ")
             description = input("Enter task description: ")
             due_date = input("Enter due date (YYYY-MM-DD): ")
-
-            add_task(tasks, title, description, due_date)
+            add_task(title, description, due_date)
 
         elif choice == "2":
             view_pending_tasks(tasks)
-
             try:
                 index = int(input("Enter task number: ")) - 1
-                mark_task_as_complete(tasks, index)
+                mark_task_as_complete(index)
             except ValueError:
                 print("Invalid input.")
 
@@ -43,12 +39,11 @@ def main():
             print(progress)
 
         elif choice == "5":
-            print("Exiting program...")
+            print("Exiting the program...")
             break
 
         else:
-            print("Invalid choice.")
-
+            print("Invalid choice. Please try again.")
 
 if __name__ == "__main__":
     main()
